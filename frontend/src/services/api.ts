@@ -128,5 +128,9 @@ export const datasetApi = {
     const response = await axios.post(`${API_BASE_URL}/dataset/load-into-wardrobe`);
     return response.data;
   },
+  replaceWardrobe: async (): Promise<{ success: boolean; count: number; message: string }> => {
+    const response = await axios.post(`${API_BASE_URL}/dataset/replace-wardrobe`);
+    return response.data;
+  },
 };
 
