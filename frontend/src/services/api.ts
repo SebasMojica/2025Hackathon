@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { User, ClothingItem, Outfit, SwipeAction } from '../types';
+import { User, ClothingItem, Outfit } from '../types';
 
 const API_BASE_URL = '/api';
 

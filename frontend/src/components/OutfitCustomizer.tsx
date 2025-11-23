@@ -11,7 +11,6 @@ interface OutfitCustomizerProps {
 export function OutfitCustomizer({ outfit, onSave, onCancel }: OutfitCustomizerProps) {
   const [customizedOutfit, setCustomizedOutfit] = useState<Outfit>({ ...outfit });
   const [wardrobe, setWardrobe] = useState<ClothingItem[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -24,8 +23,6 @@ export function OutfitCustomizer({ outfit, onSave, onCancel }: OutfitCustomizerP
       setWardrobe(items);
     } catch (error) {
       console.error('Failed to load wardrobe:', error);
-    } finally {
-      setLoading(false);
     }
   };
 

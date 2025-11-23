@@ -136,7 +136,7 @@ function OutfitsPage() {
       <div className="min-h-screen bg-gray-100 py-8">
         <OutfitCustomizer
           outfit={customizingOutfit}
-          onSave={(outfit) => {
+          onSave={(_outfit) => {
             setCustomizingOutfit(null);
             // Optionally save the customized outfit
           }}
