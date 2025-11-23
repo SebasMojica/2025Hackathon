@@ -44,14 +44,29 @@ router.post('/try-on/angles', async (req, res) => {
 router.get('/test', async (req, res) => {
   const hasApiKey = !!process.env.FAL_API_KEY;
   const publicUrl = process.env.PUBLIC_URL || process.env.FRONTEND_URL?.replace(':5173', ':3001') || 'http://localhost:3001';
+  const isLocalhost = publicUrl.includes('localhost') || publicUrl.includes('127.0.0.1');
   
   res.json({
     hasApiKey,
     publicUrl,
-    message: hasApiKey 
-      ? 'fal.ai API key is configured. Make sure PUBLIC_URL is set for image generation to work.'
-      : 'FAL_API_KEY is not set in .env file',
-    note: 'Images must be publicly accessible for fal.ai to generate try-on images. Use ngrok or deploy to a public server.',
+    isLocalhost,
+    canGenerateImages: hasApiKey && !isLocalhost,
+    message: !hasApiKey 
+      ? '❌ FAL_API_KEY is not set in .env file'
+      : isLocalhost
+      ? '⚠️  PUBLIC_URL is localhost - fal.ai cannot access localhost images. Use ngrok or deploy to Railway.'
+      : '✅ Setup looks good! Images should generate.',
+    instructions: isLocalhost ? [
+      'Option 1: Use ngrok (for development)',
+      '  1. Install: brew install ngrok',
+      '  2. Run: ngrok http 3001',
+      '  3. Copy the ngrok URL and set PUBLIC_URL in .env',
+      '  4. Restart backend server',
+      '',
+      'Option 2: Deploy to Railway (for production)',
+      '  - Railway automatically sets PUBLIC_URL',
+      '  - See RAILWAY_QUICK_START.md for instructions'
+    ] : [],
   });
 });
 
