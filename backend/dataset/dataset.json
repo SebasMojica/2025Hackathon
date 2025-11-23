@@ -1,0 +1,982 @@
+[
+  {
+    "id": "dataset-outerwear-1",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-1.jpg",
+    "color": "orange",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-outerwear-2",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-2.jpg",
+    "color": "purple",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-outerwear-3",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-3.jpg",
+    "color": "teal",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-outerwear-4",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-4.jpg",
+    "color": "beige",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-outerwear-5",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-5.jpg",
+    "color": "pink",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-outerwear-6",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-6.jpg",
+    "color": "pink",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-outerwear-7",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-7.jpg",
+    "color": "pink",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-outerwear-8",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-8.jpg",
+    "color": "pink",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-outerwear-9",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-9.jpg",
+    "color": "beige",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-outerwear-10",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-10.jpg",
+    "color": "white",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-outerwear-11",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-11.jpg",
+    "color": "orange",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-outerwear-12",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-12.jpg",
+    "color": "gray",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-outerwear-13",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-13.jpg",
+    "color": "purple",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-outerwear-14",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-14.jpg",
+    "color": "navy",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-outerwear-15",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-15.jpg",
+    "color": "white",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-outerwear-16",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-16.jpg",
+    "color": "beige",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-outerwear-17",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-17.jpg",
+    "color": "teal",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-outerwear-18",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-18.jpg",
+    "color": "beige",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-outerwear-19",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-19.jpg",
+    "color": "navy",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-outerwear-20",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-20.jpg",
+    "color": "yellow",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-outerwear-21",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-21.jpg",
+    "color": "black",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-outerwear-22",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-22.jpg",
+    "color": "red",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-outerwear-23",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-23.jpg",
+    "color": "brown",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-outerwear-24",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-24.jpg",
+    "color": "white",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-outerwear-25",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-25.jpg",
+    "color": "pink",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-outerwear-26",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-26.jpg",
+    "color": "teal",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-outerwear-27",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-27.jpg",
+    "color": "yellow",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-outerwear-28",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-28.jpg",
+    "color": "red",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-outerwear-29",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-29.jpg",
+    "color": "black",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-outerwear-30",
+    "type": "outerwear",
+    "imageUrl": "/dataset/images/outerwear-30.jpg",
+    "color": "purple",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-bottom-1",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-1.jpg",
+    "color": "purple",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-bottom-2",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-2.jpg",
+    "color": "yellow",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-bottom-3",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-3.jpg",
+    "color": "navy",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-bottom-4",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-4.jpg",
+    "color": "brown",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-bottom-5",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-5.jpg",
+    "color": "yellow",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-bottom-6",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-6.jpg",
+    "color": "navy",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-bottom-7",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-7.jpg",
+    "color": "beige",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-bottom-8",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-8.jpg",
+    "color": "white",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-bottom-9",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-9.jpg",
+    "color": "pink",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-bottom-10",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-10.jpg",
+    "color": "brown",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-bottom-11",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-11.jpg",
+    "color": "navy",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-bottom-12",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-12.jpg",
+    "color": "teal",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-bottom-13",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-13.jpg",
+    "color": "navy",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-bottom-14",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-14.jpg",
+    "color": "red",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-bottom-15",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-15.jpg",
+    "color": "red",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-bottom-16",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-16.jpg",
+    "color": "beige",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-bottom-17",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-17.jpg",
+    "color": "pink",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-bottom-18",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-18.jpg",
+    "color": "green",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-bottom-19",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-19.jpg",
+    "color": "teal",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-bottom-20",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-20.jpg",
+    "color": "white",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-bottom-21",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-21.jpg",
+    "color": "brown",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-bottom-22",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-22.jpg",
+    "color": "gray",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-bottom-23",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-23.jpg",
+    "color": "pink",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-bottom-24",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-24.jpg",
+    "color": "purple",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-bottom-25",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-25.jpg",
+    "color": "yellow",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-bottom-26",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-26.jpg",
+    "color": "yellow",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-bottom-27",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-27.jpg",
+    "color": "yellow",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-bottom-28",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-28.jpg",
+    "color": "navy",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-bottom-29",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-29.jpg",
+    "color": "blue",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-bottom-30",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-30.jpg",
+    "color": "purple",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-bottom-31",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-31.jpg",
+    "color": "yellow",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-bottom-32",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-32.jpg",
+    "color": "white",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-bottom-33",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-33.jpg",
+    "color": "teal",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-bottom-34",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-34.jpg",
+    "color": "green",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-bottom-35",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-35.jpg",
+    "color": "beige",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-bottom-36",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-36.jpg",
+    "color": "black",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-bottom-37",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-37.jpg",
+    "color": "beige",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-bottom-38",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-38.jpg",
+    "color": "gray",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-bottom-39",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-39.jpg",
+    "color": "beige",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-bottom-40",
+    "type": "bottom",
+    "imageUrl": "/dataset/images/bottom-40.jpg",
+    "color": "black",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-dress-1",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-1.jpg",
+    "color": "navy",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-dress-2",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-2.jpg",
+    "color": "white",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-dress-3",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-3.jpg",
+    "color": "green",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-dress-4",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-4.jpg",
+    "color": "orange",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-dress-5",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-5.jpg",
+    "color": "white",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-dress-6",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-6.jpg",
+    "color": "green",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-dress-7",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-7.jpg",
+    "color": "blue",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-dress-8",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-8.jpg",
+    "color": "gray",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-dress-9",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-9.jpg",
+    "color": "orange",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-dress-10",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-10.jpg",
+    "color": "gray",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-dress-11",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-11.jpg",
+    "color": "orange",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-dress-12",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-12.jpg",
+    "color": "yellow",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-dress-13",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-13.jpg",
+    "color": "orange",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-dress-14",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-14.jpg",
+    "color": "teal",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-dress-15",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-15.jpg",
+    "color": "yellow",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-dress-16",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-16.jpg",
+    "color": "red",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-dress-17",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-17.jpg",
+    "color": "purple",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-dress-18",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-18.jpg",
+    "color": "brown",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-dress-19",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-19.jpg",
+    "color": "brown",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-dress-20",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-20.jpg",
+    "color": "beige",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-dress-21",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-21.jpg",
+    "color": "yellow",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-dress-22",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-22.jpg",
+    "color": "red",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-dress-23",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-23.jpg",
+    "color": "red",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-dress-24",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-24.jpg",
+    "color": "orange",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-dress-25",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-25.jpg",
+    "color": "brown",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-dress-26",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-26.jpg",
+    "color": "beige",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-dress-27",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-27.jpg",
+    "color": "yellow",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-dress-28",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-28.jpg",
+    "color": "purple",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-dress-29",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-29.jpg",
+    "color": "beige",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-dress-30",
+    "type": "dress",
+    "imageUrl": "/dataset/images/dress-30.jpg",
+    "color": "orange",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-top-1",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-1.jpg",
+    "color": "black",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-top-2",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-2.jpg",
+    "color": "green",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-top-3",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-3.jpg",
+    "color": "yellow",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-top-4",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-4.jpg",
+    "color": "white",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-top-5",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-5.jpg",
+    "color": "pink",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-top-6",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-6.jpg",
+    "color": "purple",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-top-7",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-7.jpg",
+    "color": "teal",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-top-8",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-8.jpg",
+    "color": "pink",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-top-9",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-9.jpg",
+    "color": "red",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-top-10",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-10.jpg",
+    "color": "yellow",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-top-11",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-11.jpg",
+    "color": "navy",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-top-12",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-12.jpg",
+    "color": "teal",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-top-13",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-13.jpg",
+    "color": "purple",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-top-14",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-14.jpg",
+    "color": "purple",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-top-15",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-15.jpg",
+    "color": "blue",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-top-16",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-16.jpg",
+    "color": "navy",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-top-17",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-17.jpg",
+    "color": "purple",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-top-18",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-18.jpg",
+    "color": "orange",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-top-19",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-19.jpg",
+    "color": "brown",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-top-20",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-20.jpg",
+    "color": "green",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-top-21",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-21.jpg",
+    "color": "white",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-top-22",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-22.jpg",
+    "color": "beige",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-top-23",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-23.jpg",
+    "color": "orange",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-top-24",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-24.jpg",
+    "color": "navy",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-top-25",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-25.jpg",
+    "color": "yellow",
+    "brand": "Fashion"
+  },
+  {
+    "id": "dataset-top-26",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-26.jpg",
+    "color": "beige",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-top-27",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-27.jpg",
+    "color": "pink",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-top-28",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-28.jpg",
+    "color": "brown",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-top-29",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-29.jpg",
+    "color": "purple",
+    "brand": "Modern"
+  },
+  {
+    "id": "dataset-top-30",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-30.jpg",
+    "color": "black",
+    "brand": "Premium"
+  },
+  {
+    "id": "dataset-top-31",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-31.jpg",
+    "color": "navy",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-top-32",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-32.jpg",
+    "color": "gray",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-top-33",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-33.jpg",
+    "color": "purple",
+    "brand": "Elite"
+  },
+  {
+    "id": "dataset-top-34",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-34.jpg",
+    "color": "green",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-top-35",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-35.jpg",
+    "color": "blue",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-top-36",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-36.jpg",
+    "color": "navy",
+    "brand": "Trend"
+  },
+  {
+    "id": "dataset-top-37",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-37.jpg",
+    "color": "pink",
+    "brand": "Style"
+  },
+  {
+    "id": "dataset-top-38",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-38.jpg",
+    "color": "beige",
+    "brand": "Vintage"
+  },
+  {
+    "id": "dataset-top-39",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-39.jpg",
+    "color": "gray",
+    "brand": "Classic"
+  },
+  {
+    "id": "dataset-top-40",
+    "type": "top",
+    "imageUrl": "/dataset/images/top-40.jpg",
+    "color": "yellow",
+    "brand": "Classic"
+  }
+]
