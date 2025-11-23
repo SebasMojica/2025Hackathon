@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import fs from 'fs';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user';
 import outfitsRoutes from './routes/outfits';
@@ -11,7 +12,7 @@ import datasetRoutes from './routes/dataset';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = parseInt(process.env.PORT || '3001', 10);
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 // Middleware
@@ -40,7 +41,28 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+// Serve frontend static files in production
+const frontendDistPath = path.join(process.cwd(), 'frontend', 'dist');
+const frontendExists = fs.existsSync(frontendDistPath);
+
+if (frontendExists) {
+  // Serve static files from frontend/dist
+  app.use(express.static(frontendDistPath));
+  
+  // Catch-all handler: send back React's index.html file for SPA routing
+  app.get('*', (req, res) => {
+    // Don't handle API routes
+    if (req.path.startsWith('/api/')) {
+      return res.status(404).json({ error: 'Not found' });
+    }
+    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  });
+}
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+  if (frontendExists) {
+    console.log('Frontend static files are being served from frontend/dist');
+  }
 });
 
