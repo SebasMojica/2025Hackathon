@@ -8,9 +8,13 @@ const router = Router();
 router.get('/suggestions', async (req, res) => {
   try {
     const count = parseInt(req.query.count as string) || 5;
-    const outfits = await generateOutfitSuggestions(count);
+    const userPhotoUrl = req.query.userPhotoUrl as string | undefined;
+    
+    // Generate outfits with try-on images
+    const outfits = await generateOutfitSuggestions(count, userPhotoUrl);
     res.json(outfits);
   } catch (error: any) {
+    console.error('Error generating outfit suggestions:', error);
     res.status(500).json({ error: error.message });
   }
 });

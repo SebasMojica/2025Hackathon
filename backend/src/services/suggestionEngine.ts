@@ -1,10 +1,22 @@
 import { ClothingItem, Outfit } from '../types';
-import { getWardrobe, getPurchaseHistory, getSwipeActions } from './storage';
+import { getWardrobe, getPurchaseHistory, getSwipeActions, getUser } from './storage';
+import { generateVirtualTryOn } from './falService';
 
-export async function generateOutfitSuggestions(count: number = 5): Promise<Outfit[]> {
+export async function generateOutfitSuggestions(count: number = 5, userPhotoUrl?: string): Promise<Outfit[]> {
   const wardrobe = await getWardrobe();
   const purchaseHistory = await getPurchaseHistory();
   const swipeActions = await getSwipeActions();
+  
+  // Get user photo if not provided
+  let userPhoto = userPhotoUrl;
+  if (!userPhoto) {
+    const user = await getUser();
+    if (user) {
+      // Convert relative URL to absolute
+      const baseUrl = process.env.PUBLIC_URL || `http://localhost:${process.env.PORT || 3001}`;
+      userPhoto = user.photoUrl.startsWith('http') ? user.photoUrl : `${baseUrl}${user.photoUrl}`;
+    }
+  }
   
   // Combine wardrobe and purchase history
   const allItems = [...wardrobe, ...purchaseHistory];
@@ -65,11 +77,32 @@ export async function generateOutfitSuggestions(count: number = 5): Promise<Outf
     }
     
     if (items.length > 0) {
-      outfits.push({
+      const outfit: Outfit = {
         id: outfitId,
         items,
         generatedAt: new Date().toISOString(),
-      });
+      };
+      
+      // Generate try-on image if user photo is available
+      if (userPhoto && items.length > 0) {
+        try {
+          // Use the first item (main piece) for try-on
+          const mainItem = items[0];
+          const clothingUrl = mainItem.imageUrl.startsWith('http') 
+            ? mainItem.imageUrl 
+            : `${process.env.PUBLIC_URL || `http://localhost:${process.env.PORT || 3001}`}${mainItem.imageUrl}`;
+          
+          console.log(`Generating try-on for outfit ${outfitId}...`);
+          const tryOnImage = await generateVirtualTryOn(userPhoto, clothingUrl);
+          outfit.tryOnImageUrl = tryOnImage;
+          console.log(`✅ Generated try-on image for outfit ${outfitId}`);
+        } catch (error: any) {
+          console.error(`Failed to generate try-on for outfit ${outfitId}:`, error.message);
+          // Continue without try-on image - outfit will still be returned
+        }
+      }
+      
+      outfits.push(outfit);
     }
   }
   

@@ -83,11 +83,14 @@ function HomePage() {
 }
 
 function OutfitsPage() {
-  const { outfits, loading, error, refetch } = useOutfitSuggestions(10);
-  const [customizingOutfit, setCustomizingOutfit] = useState<Outfit | null>(null);
-  const [tryOnOutfit, setTryOnOutfit] = useState<{ user: User; outfit: Outfit } | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [userLoading, setUserLoading] = useState(true);
+  const [userPhotoUrl, setUserPhotoUrl] = useState<string | undefined>(undefined);
+  
+  // Get user photo URL for backend to generate try-on images
+  const { outfits, loading, error, refetch } = useOutfitSuggestions(5, userPhotoUrl);
+  const [customizingOutfit, setCustomizingOutfit] = useState<Outfit | null>(null);
+  const [tryOnOutfit, setTryOnOutfit] = useState<{ user: User; outfit: Outfit } | null>(null);
 
   useEffect(() => {
     loadUser();
@@ -97,6 +100,13 @@ function OutfitsPage() {
     try {
       const userData = await userApi.getUser();
       setUser(userData);
+      if (userData) {
+        // Convert relative URL to absolute for backend
+        const photoUrl = userData.photoUrl.startsWith('http') 
+          ? userData.photoUrl 
+          : `${import.meta.env.VITE_API_URL || 'http://localhost:3001'}${userData.photoUrl}`;
+        setUserPhotoUrl(photoUrl);
+      }
     } catch (error) {
       console.error('Failed to load user:', error);
     } finally {

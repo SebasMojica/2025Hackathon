@@ -28,11 +28,26 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
   }, []);
 
   useEffect(() => {
-    if (currentOutfit && user) {
-      setTryOnImages([]); // Clear previous images
-      generateTryOnImages();
+    if (currentOutfit) {
+      // Use pre-generated try-on images from backend if available
+      if (currentOutfit.tryOnImageUrl) {
+        setTryOnImages([currentOutfit.tryOnImageUrl]);
+        setLoadingImages(false);
+      } else if (currentOutfit.tryOnImageUrls && currentOutfit.tryOnImageUrls.length > 0) {
+        setTryOnImages(currentOutfit.tryOnImageUrls);
+        setLoadingImages(false);
+      } else if (user && currentOutfit.items.length > 0) {
+        // Fallback: generate on the fly if not pre-generated
+        setTryOnImages([]);
+        imageCarousel.goTo(0);
+        generateTryOnImages();
+      } else {
+        setTryOnImages([]);
+        setLoadingImages(false);
+      }
     } else {
       setTryOnImages([]);
+      setLoadingImages(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentOutfit?.id, user?.id]); // Only regenerate when outfit or user changes

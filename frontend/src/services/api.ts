@@ -80,9 +80,13 @@ export const wardrobeApi = {
 
 // Outfits API
 export const outfitsApi = {
-  getSuggestions: async (count: number = 5): Promise<Outfit[]> => {
+  getSuggestions: async (count: number = 5, userPhotoUrl?: string): Promise<Outfit[]> => {
+    const params: any = { count };
+    if (userPhotoUrl) {
+      params.userPhotoUrl = userPhotoUrl;
+    }
     const response = await axios.get(`${API_BASE_URL}/outfits/suggestions`, {
-      params: { count },
+      params,
     });
     return response.data;
   },

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Outfit } from '../types';
 import { outfitsApi } from '../services/api';
 
-export function useOutfitSuggestions(count: number = 5) {
+export function useOutfitSuggestions(count: number = 5, userPhotoUrl?: string) {
   const [outfits, setOutfits] = useState<Outfit[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -11,7 +11,7 @@ export function useOutfitSuggestions(count: number = 5) {
     try {
       setLoading(true);
       setError(null);
-      const data = await outfitsApi.getSuggestions(count);
+      const data = await outfitsApi.getSuggestions(count, userPhotoUrl);
       setOutfits(data);
     } catch (err: any) {
       setError(err.message || 'Failed to fetch outfit suggestions');
@@ -22,7 +22,7 @@ export function useOutfitSuggestions(count: number = 5) {
 
   useEffect(() => {
     fetchSuggestions();
-  }, [count]);
+  }, [count, userPhotoUrl]);
 
   return { outfits, loading, error, refetch: fetchSuggestions };
 }

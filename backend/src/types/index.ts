@@ -13,6 +13,8 @@ export interface Outfit {
   id: string;
   items: ClothingItem[];
   generatedAt: string;
+  tryOnImageUrl?: string; // fal.ai generated image of user wearing the outfit
+  tryOnImageUrls?: string[]; // Multiple angles if available
 }
 
 // Swipe Action
