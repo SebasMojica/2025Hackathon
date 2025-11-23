@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export function useImageCarousel(images: string[], autoAdvance: boolean = false) {
+export function useImageCarousel(images: string[], _autoAdvance: boolean = false) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Reset to first image when images array changes

@@ -1,0 +1,23 @@
+# Files to ignore in Railway deployment
+node_modules/
+.git/
+.env
+.env.local
+*.log
+.DS_Store
+
+# Dataset files (will be loaded after deployment)
+backend/dataset/images/
+backend/kaggle-dataset/
+backend/kaggle-dataset.zip
+
+# Development files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Frontend (if deploying separately)
+frontend/node_modules/
+frontend/dist/
+

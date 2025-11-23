@@ -50,7 +50,7 @@ export function PhotoUpload({ onUploadComplete, existingUser }: PhotoUploadProps
       {preview && (
         <div className="mb-4">
           <img
-            src={preview.startsWith('data:') ? preview : `http://localhost:3001${preview}`}
+            src={preview.startsWith('data:') ? preview : (preview.startsWith('http') ? preview : `${import.meta.env.VITE_API_URL || 'http://localhost:3001'}${preview}`)}
             alt="Preview"
             className="w-full h-64 object-cover rounded-lg"
           />
