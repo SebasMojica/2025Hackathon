@@ -27,6 +27,7 @@ NODE_ENV=production
 ```
 
 **Railway automatically provides:**
+
 - `RAILWAY_PUBLIC_DOMAIN` - Your public domain (e.g., `your-app.railway.app`)
 - `PORT` - Port to listen on
 - `PUBLIC_URL` - Auto-detected from Railway domain
@@ -34,6 +35,7 @@ NODE_ENV=production
 ### Step 4: Deploy
 
 Railway will automatically:
+
 1. Install dependencies
 2. Build frontend (`npm run build`)
 3. Build backend (`npm run build`)
@@ -44,6 +46,7 @@ Railway will automatically:
 After deployment, load the clothing dataset:
 
 **Option A: Via Railway CLI**
+
 ```bash
 # Install Railway CLI
 npm i -g @railway/cli
@@ -62,6 +65,7 @@ railway run curl -X POST https://your-app.railway.app/api/dataset/load-into-ward
 ```
 
 **Option B: Via API** (after deployment)
+
 ```bash
 curl -X POST https://your-app.railway.app/api/dataset/load-into-wardrobe
 ```
@@ -69,11 +73,13 @@ curl -X POST https://your-app.railway.app/api/dataset/load-into-wardrobe
 ### Step 6: Verify Deployment
 
 1. **Check health:**
+
    ```bash
    curl https://your-app.railway.app/api/health
    ```
 
 2. **Check fal.ai setup:**
+
    ```bash
    curl https://your-app.railway.app/api/fal/test
    ```
@@ -85,16 +91,19 @@ curl -X POST https://your-app.railway.app/api/dataset/load-into-wardrobe
 ## 🎯 What's Configured
 
 ✅ **Automatic Railway Detection**
+
 - Detects `RAILWAY_PUBLIC_DOMAIN` automatically
 - Sets `PUBLIC_URL` for fal.ai image access
 - Configures CORS for production
 
 ✅ **Single-Service Deployment**
+
 - Frontend is built and served from backend
 - One Railway service = full app
 - No separate frontend deployment needed
 
 ✅ **Production Ready**
+
 - Environment-based configuration
 - Health check endpoint
 - Error handling
@@ -103,38 +112,41 @@ curl -X POST https://your-app.railway.app/api/dataset/load-into-wardrobe
 ## 🔧 Troubleshooting
 
 **Build fails:**
+
 - Check Railway logs
 - Verify Node.js version (20.x)
 - Check `package.json` scripts
 
 **Images not generating:**
+
 - Verify `FAL_API_KEY` is set
 - Check `PUBLIC_URL` is correct (auto-set from Railway)
 - Check Railway logs for fal.ai errors
 
 **Dataset not loading:**
+
 - Run download script via Railway CLI
 - Check file permissions
 - Verify dataset directory exists
 
 ## 📝 Environment Variables Reference
 
-| Variable | Required | Auto-Set | Description |
-|----------|----------|----------|-------------|
-| `FAL_API_KEY` | ✅ Yes | ❌ No | fal.ai API key |
-| `NODE_ENV` | ⚠️ Recommended | ❌ No | Set to `production` |
-| `PORT` | ❌ No | ✅ Yes | Railway sets automatically |
-| `RAILWAY_PUBLIC_DOMAIN` | ❌ No | ✅ Yes | Railway provides automatically |
-| `PUBLIC_URL` | ❌ No | ✅ Yes | Auto-detected from Railway |
-| `FRONTEND_URL` | ❌ No | ✅ Yes | Auto-detected from Railway |
+| Variable                | Required       | Auto-Set | Description                    |
+| ----------------------- | -------------- | -------- | ------------------------------ |
+| `FAL_API_KEY`           | ✅ Yes         | ❌ No    | fal.ai API key                 |
+| `NODE_ENV`              | ⚠️ Recommended | ❌ No    | Set to `production`            |
+| `PORT`                  | ❌ No          | ✅ Yes   | Railway sets automatically     |
+| `RAILWAY_PUBLIC_DOMAIN` | ❌ No          | ✅ Yes   | Railway provides automatically |
+| `PUBLIC_URL`            | ❌ No          | ✅ Yes   | Auto-detected from Railway     |
+| `FRONTEND_URL`          | ❌ No          | ✅ Yes   | Auto-detected from Railway     |
 
 ## 🎉 You're Done!
 
 Your app is now live on Railway with:
+
 - ✅ Public HTTPS URL
 - ✅ fal.ai integration ready
 - ✅ Dataset loading capability
 - ✅ All features enabled
 
 Visit your Railway dashboard to see logs, metrics, and manage your deployment!
-
