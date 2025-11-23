@@ -72,11 +72,23 @@ A web application that suggests clothing based on purchase history and wardrobe,
 ## Usage
 
 1. **Upload Your Photo**: Start by uploading a photo of yourself on the home page
-2. **Add to Wardrobe**: Go to the Wardrobe page to upload clothing items with metadata
-3. **Browse Outfits**: Navigate to the Outfits page to see AI-generated outfit suggestions
-4. **Swipe**: Swipe left to dislike, right to like outfits
-5. **Customize**: Click the customize button to swap items or change colors
-6. **Try On**: Use the "Try On Current Outfit" button to generate a virtual try-on image
+2. **Load Dataset** (Required for outfit suggestions): Download and load 200+ REAL clothing images from Kaggle:
+   ```bash
+   # First, set up Kaggle API:
+   # 1. Install: pip install kaggle
+   # 2. Get API token from https://www.kaggle.com/account
+   # 3. Place kaggle.json in ~/.kaggle/
+   
+   cd backend
+   npm run download-dataset
+   # Then load into wardrobe:
+   curl -X POST http://localhost:3001/api/dataset/load-into-wardrobe
+   ```
+3. **Add to Wardrobe**: Go to the Wardrobe page to upload clothing items with metadata
+4. **Browse Outfits**: Navigate to the Outfits page to see AI-generated outfit suggestions
+5. **Swipe**: Swipe left to dislike, right to like outfits
+6. **Customize**: Click the customize button to swap items or change colors
+7. **Try On**: View virtual try-on images with multiple angles (swipe up/down to see different angles)
 
 ## Project Structure
 

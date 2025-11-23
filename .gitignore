@@ -18,6 +18,15 @@ backend/dist/
 backend/src/data/*.json
 backend/uploads/
 
+# Dataset images (large files - download with npm run download-dataset)
+backend/dataset/images/
+# Keep dataset.json for reference
+!backend/dataset/dataset.json
+
+# Kaggle dataset (very large - downloaded separately)
+backend/kaggle-dataset/
+backend/kaggle-dataset.zip
+
 # IDE
 .vscode/
 .idea/
