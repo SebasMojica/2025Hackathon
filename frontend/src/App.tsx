@@ -147,26 +147,30 @@ function OutfitsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">Outfit Suggestions</h1>
-          <div className="flex gap-4">
-            <Link
-              to="/"
-              className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
-            >
-              Home
-            </Link>
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50">
+      {/* Header */}
+      <div className="absolute top-0 left-0 right-0 z-20 bg-white/80 backdrop-blur-sm border-b border-gray-200">
+        <div className="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
+          <h1 className="text-xl font-bold text-gray-800">Outfit Suggestions</h1>
+          <div className="flex gap-2">
             <Link
               to="/wardrobe"
-              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+              className="px-3 py-1.5 bg-gray-200 text-gray-700 rounded-full text-sm hover:bg-gray-300 transition-colors"
             >
               Wardrobe
             </Link>
+            <Link
+              to="/"
+              className="px-3 py-1.5 bg-gray-200 text-gray-700 rounded-full text-sm hover:bg-gray-300 transition-colors"
+            >
+              Home
+            </Link>
           </div>
         </div>
+      </div>
 
+      {/* Main Swipe Area */}
+      <div className="pt-16 pb-24">
         <OutfitSwipe
           outfits={outfits}
           onSwipeComplete={() => {
@@ -177,43 +181,29 @@ function OutfitsPage() {
           }}
           onCustomize={(outfit) => setCustomizingOutfit(outfit)}
         />
+      </div>
 
-        {user && tryOnOutfit && (
-          <TryOnPreview
-            user={tryOnOutfit.user}
-            outfit={tryOnOutfit.outfit}
-            onClose={() => setTryOnOutfit(null)}
-          />
-        )}
+      {user && tryOnOutfit && (
+        <TryOnPreview
+          user={tryOnOutfit.user}
+          outfit={tryOnOutfit.outfit}
+          onClose={() => setTryOnOutfit(null)}
+        />
+      )}
 
-        {!user && (
-          <div className="mt-6 text-center p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <p className="text-yellow-800 mb-2">Upload your photo first to use the try-on feature!</p>
+      {!user && (
+        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-30 max-w-md mx-auto px-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
+            <p className="text-yellow-800 mb-2 text-sm">Upload your photo first to see virtual try-on!</p>
             <Link
               to="/"
-              className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 font-medium"
+              className="inline-block px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 font-medium text-sm"
             >
               Go to Home
             </Link>
           </div>
-        )}
-
-        {user && outfits.length > 0 && (
-          <div className="mt-6 text-center">
-            <button
-              onClick={() => {
-                const currentOutfit = outfits[0];
-                if (currentOutfit && user) {
-                  setTryOnOutfit({ user, outfit: currentOutfit });
-                }
-              }}
-              className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium"
-            >
-              Try On Current Outfit
-            </button>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

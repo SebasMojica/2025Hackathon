@@ -86,3 +86,50 @@ export async function generateVirtualTryOn(
   }
 }
 
+// Generate multiple angles for try-on
+export async function generateMultipleAngles(
+  userPhotoUrl: string,
+  clothingItemUrl: string,
+  angles: string[] = ['front', 'side', 'back']
+): Promise<string[]> {
+  if (!FAL_API_KEY) {
+    throw new Error('FAL_API_KEY is not configured');
+  }
+
+  const imagePromises = angles.map(async (angle) => {
+    try {
+      // Generate with angle-specific prompt
+      const response = await axios.post(
+        `${FAL_API_URL}/fal-ai/idm-vton`,
+        {
+          person_image: userPhotoUrl,
+          garment_image: clothingItemUrl,
+          // Add angle to prompt if the API supports it
+          prompt: `A person wearing the outfit viewed from ${angle} angle, full body shot, realistic photo`,
+        },
+        {
+          headers: {
+            'Authorization': `Key ${FAL_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      return response.data.result?.image_url || response.data.image_url || '';
+    } catch (error: any) {
+      console.error(`Error generating ${angle} angle:`, error.response?.data || error.message);
+      // Fallback: generate single image and return it for all angles
+      return generateVirtualTryOn(userPhotoUrl, clothingItemUrl);
+    }
+  });
+
+  try {
+    const images = await Promise.all(imagePromises);
+    return images.filter(img => img); // Filter out empty strings
+  } catch (error: any) {
+    // If all fail, return a single generated image
+    const singleImage = await generateVirtualTryOn(userPhotoUrl, clothingItemUrl);
+    return [singleImage];
+  }
+}
+

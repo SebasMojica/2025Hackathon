@@ -6,8 +6,17 @@ const API_BASE_URL = '/api';
 // User API
 export const userApi = {
   getUser: async (): Promise<User | null> => {
-    const response = await axios.get(`${API_BASE_URL}/user`);
-    return response.data;
+    try {
+      const response = await axios.get(`${API_BASE_URL}/user`);
+      return response.data;
+    } catch (error: any) {
+      // Return null if user doesn't exist (404) or other errors
+      if (error.response?.status === 404) {
+        return null;
+      }
+      console.error('Error fetching user:', error);
+      return null;
+    }
   },
   uploadPhoto: async (file: File): Promise<User> => {
     const formData = new FormData();
@@ -90,6 +99,30 @@ export const falApi = {
       clothingItemUrl,
     });
     return response.data.imageUrl;
+  },
+  generateMultipleAngles: async (
+    userPhotoUrl: string,
+    clothingItemUrl: string,
+    angles?: string[]
+  ): Promise<string[]> => {
+    const response = await axios.post(`${API_BASE_URL}/fal/try-on/angles`, {
+      userPhotoUrl,
+      clothingItemUrl,
+      angles,
+    });
+    return response.data.imageUrls || [];
+  },
+};
+
+// Dataset API
+export const datasetApi = {
+  getDataset: async (): Promise<ClothingItem[]> => {
+    const response = await axios.get(`${API_BASE_URL}/dataset`);
+    return response.data;
+  },
+  loadIntoWardrobe: async (): Promise<{ success: boolean; count: number; message: string }> => {
+    const response = await axios.post(`${API_BASE_URL}/dataset/load-into-wardrobe`);
+    return response.data;
   },
 };
 

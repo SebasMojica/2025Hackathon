@@ -2,7 +2,8 @@ import fs from 'fs/promises';
 import path from 'path';
 import { ClothingItem, Outfit, SwipeAction } from '../types';
 
-const DATA_DIR = path.join(__dirname, '../data');
+// Use process.cwd() for tsx compatibility, or __dirname if available
+const DATA_DIR = path.join(process.cwd(), 'backend/src/data');
 
 // Ensure data directory exists
 async function ensureDataDir() {
