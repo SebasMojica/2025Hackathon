@@ -116,6 +116,17 @@ export const falApi = {
     });
     return response.data.imageUrls || [];
   },
+  // Generate try-on from file uploads
+  generateFromUpload: async (userPhotoFile: File, clothingItemFile: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append('userPhoto', userPhotoFile);
+    formData.append('clothingItem', clothingItemFile);
+    
+    const response = await axios.post(`${API_BASE_URL}/fal/generate-from-upload`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    return response.data.imageUrl;
+  },
 };
 
 // Dataset API
