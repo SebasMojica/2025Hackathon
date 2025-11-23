@@ -8,7 +8,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "download-dataset": "tsx src/scripts/downloadDataset.ts",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build || true"
   },
   "keywords": [],
   "author": "",

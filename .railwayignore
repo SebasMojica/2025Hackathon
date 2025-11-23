@@ -17,7 +17,7 @@ backend/kaggle-dataset.zip
 *.swp
 *.swo
 
-# Frontend (if deploying separately)
+# Frontend node_modules (but keep dist for serving)
 frontend/node_modules/
-frontend/dist/
+# Note: frontend/dist/ is needed for serving frontend from backend
 

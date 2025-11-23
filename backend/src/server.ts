@@ -36,10 +36,14 @@ console.log(`  FRONTEND_URL: ${FRONTEND_URL}`);
 console.log(`  RAILWAY_PUBLIC_DOMAIN: ${RAILWAY_PUBLIC_DOMAIN || 'Not set'}`);
 
 // Middleware
-app.use(cors({
-  origin: FRONTEND_URL,
+// CORS: Allow requests from frontend URL, or any origin in production (Railway)
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? (process.env.FRONTEND_URL || true) // Allow all origins in production if FRONTEND_URL not set
+    : FRONTEND_URL,
   credentials: true,
-}));
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -103,13 +107,24 @@ async function autoLoadDataset() {
 // Serve frontend in production (if built and exists)
 // This allows single-service deployment on Railway
 if (process.env.NODE_ENV === 'production') {
-  const frontendDist = path.join(process.cwd(), '../frontend/dist');
-  const frontendDistAlt = path.join(process.cwd(), 'frontend/dist');
-  const distPath = fs.existsSync(frontendDist) ? frontendDist : 
-                   fs.existsSync(frontendDistAlt) ? frontendDistAlt : null;
+  // Try multiple possible paths for frontend dist
+  const possiblePaths = [
+    path.join(process.cwd(), '../frontend/dist'),      // If running from backend/
+    path.join(process.cwd(), 'frontend/dist'),          // If running from root
+    path.join(process.cwd(), 'dist'),                   // If frontend is in root
+    path.join(__dirname, '../../frontend/dist'),        // Relative to compiled dist
+  ];
+  
+  let distPath: string | null = null;
+  for (const possiblePath of possiblePaths) {
+    if (fs.existsSync(possiblePath)) {
+      distPath = possiblePath;
+      break;
+    }
+  }
   
   if (distPath) {
-    console.log(`Serving frontend from: ${distPath}`);
+    console.log(`✅ Serving frontend from: ${distPath}`);
     app.use(express.static(distPath));
     // Fallback to index.html for SPA routing (must be after API routes)
     app.get('*', (req, res, next) => {
@@ -117,10 +132,16 @@ if (process.env.NODE_ENV === 'production') {
       if (req.path.startsWith('/api')) {
         return next();
       }
-      res.sendFile(path.join(distPath, 'index.html'));
+      const indexPath = path.join(distPath!, 'index.html');
+      if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+      } else {
+        next();
+      }
     });
   } else {
-    console.log('Frontend dist not found, serving API only');
+    console.log('⚠️  Frontend dist not found, serving API only');
+    console.log('   Checked paths:', possiblePaths);
   }
 }
 
