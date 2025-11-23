@@ -40,6 +40,41 @@ router.post('/try-on/angles', async (req, res) => {
   }
 });
 
+// Test image generation with sample URLs
+router.post('/test-generation', async (req, res) => {
+  try {
+    const { userPhotoUrl, clothingItemUrl } = req.body;
+    
+    if (!userPhotoUrl || !clothingItemUrl) {
+      return res.status(400).json({ 
+        error: 'Missing userPhotoUrl or clothingItemUrl',
+        example: {
+          userPhotoUrl: 'https://example.com/user.jpg',
+          clothingItemUrl: 'https://example.com/clothing.jpg'
+        }
+      });
+    }
+
+    console.log('🧪 Testing image generation...');
+    console.log('   User photo:', userPhotoUrl);
+    console.log('   Clothing:', clothingItemUrl);
+    
+    const result = await generateVirtualTryOn(userPhotoUrl, clothingItemUrl);
+    
+    res.json({ 
+      success: true, 
+      imageUrl: result,
+      message: 'Image generation successful!'
+    });
+  } catch (error: any) {
+    console.error('Test generation error:', error);
+    res.status(500).json({ 
+      error: error.message,
+      details: error.stack
+    });
+  }
+});
+
 // Test endpoint to verify fal.ai setup
 router.get('/test', async (req, res) => {
   const hasApiKey = !!process.env.FAL_API_KEY;
