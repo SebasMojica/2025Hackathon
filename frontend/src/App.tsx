@@ -42,11 +42,14 @@ function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 py-12">
       <div className="max-w-4xl mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
-          Virtual Try-On Fashion App
-        </h1>
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold mb-3 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
+            Virtual Try-On Fashion App
+          </h1>
+          <p className="text-gray-600 text-lg">Discover your perfect style with AI-powered outfit suggestions</p>
+        </div>
 
         {!user && (
           <div className="mb-8">
@@ -157,27 +160,8 @@ function OutfitsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50">
-      {/* Header */}
-      <div className="absolute top-0 left-0 right-0 z-20 bg-white/80 backdrop-blur-sm border-b border-gray-200">
-        <div className="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
-          <h1 className="text-xl font-bold text-gray-800">Outfit Suggestions</h1>
-          <div className="flex gap-2">
-            <Link
-              to="/wardrobe"
-              className="px-3 py-1.5 bg-gray-200 text-gray-700 rounded-full text-sm hover:bg-gray-300 transition-colors"
-            >
-              Wardrobe
-            </Link>
-            <Link
-              to="/"
-              className="px-3 py-1.5 bg-gray-200 text-gray-700 rounded-full text-sm hover:bg-gray-300 transition-colors"
-            >
-              Home
-            </Link>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
+      {/* Header removed - using main nav instead */}
 
       {/* Main Swipe Area */}
       <div className="pt-16 pb-24">

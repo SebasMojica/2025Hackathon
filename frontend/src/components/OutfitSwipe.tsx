@@ -125,8 +125,10 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
 
   if (!hasMore) {
     return (
-      <div className="w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg text-center">
-        <p className="text-gray-600 mb-4">No more outfits to show!</p>
+      <div className="w-full max-w-md mx-auto p-8 bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl text-center border border-white/50">
+        <div className="text-6xl mb-4">✨</div>
+        <p className="text-gray-700 text-lg font-semibold mb-2">You've seen all outfits!</p>
+        <p className="text-gray-500 text-sm mb-6">Get more suggestions to continue browsing</p>
         <button
           onClick={() => {
             reset();
@@ -134,9 +136,9 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
               onSwipeComplete();
             }
           }}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
         >
-          Reset & Get More
+          Get More Outfits
         </button>
       </div>
     );
@@ -144,8 +146,9 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
 
   if (!currentOutfit) {
     return (
-      <div className="w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg text-center">
-        <p className="text-gray-600">Loading...</p>
+      <div className="w-full max-w-md mx-auto p-8 bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl text-center border border-white/50">
+        <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-purple-200 border-t-purple-600 mb-4"></div>
+        <p className="text-gray-600 font-medium">Loading outfits...</p>
       </div>
     );
   }
@@ -153,31 +156,38 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
   const currentImage = tryOnImages[imageCarousel.currentIndex] || 'https://via.placeholder.com/400x600?text=Loading...';
 
   return (
-    <div className="w-full max-w-md mx-auto h-[600px] relative">
-      {/* Tinder-like Card */}
+    <div className="w-full max-w-md mx-auto h-[650px] relative">
+      {/* Tinder-like Card with enhanced styling */}
       <div
         {...swipeHandlers}
-        className={`absolute inset-0 bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 ${
+        className={`absolute inset-0 bg-white rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 ease-out ${
           swipeDirection === 'left' 
-            ? 'transform -translate-x-full rotate-[-30deg] opacity-0' 
+            ? 'transform -translate-x-full rotate-[-30deg] opacity-0 scale-95' 
             : swipeDirection === 'right' 
-            ? 'transform translate-x-full rotate-[30deg] opacity-0'
-            : ''
+            ? 'transform translate-x-full rotate-[30deg] opacity-0 scale-95'
+            : 'scale-100'
         }`}
         style={{ 
           touchAction: 'pan-y pinch-zoom',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)',
         }}
       >
         {/* Image Carousel */}
         <div 
           {...imageSwipeHandlers}
-          className="relative w-full h-[500px] bg-gray-100"
+          className="relative w-full h-[550px] bg-gradient-to-br from-gray-50 to-gray-100"
         >
           {loadingImages ? (
-            <div className="w-full h-full flex items-center justify-center">
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-50">
               <div className="text-center">
-                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-pink-500 mb-4"></div>
-                <p className="text-gray-600">Generating try-on images...</p>
+                <div className="relative">
+                  <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-purple-200 border-t-purple-600 mb-4"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="h-8 w-8 bg-purple-600 rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+                <p className="text-gray-700 font-medium">Generating your try-on...</p>
+                <p className="text-gray-500 text-sm mt-2">This may take a moment</p>
               </div>
             </div>
           ) : (
@@ -185,7 +195,7 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
               <img
                 src={currentImage}
                 alt="Try-on preview"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-opacity duration-300"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'https://via.placeholder.com/400x600?text=Try+On+Preview';
                 }}
@@ -193,15 +203,15 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
               
               {/* Image dots indicator */}
               {tryOnImages.length > 1 && (
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
                   {tryOnImages.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => imageCarousel.goTo(index)}
-                      className={`w-2 h-2 rounded-full transition-all ${
+                      className={`rounded-full transition-all duration-300 ${
                         index === imageCarousel.currentIndex 
-                          ? 'bg-white w-6' 
-                          : 'bg-white/50'
+                          ? 'bg-white w-8 h-2 shadow-lg' 
+                          : 'bg-white/60 w-2 h-2 hover:bg-white/80'
                       }`}
                     />
                   ))}
@@ -216,10 +226,10 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
                       e.stopPropagation();
                       imageCarousel.prev();
                     }}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-all"
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-xl transition-all hover:scale-110 z-20 backdrop-blur-sm"
                   >
                     <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                     </svg>
                   </button>
                   <button
@@ -227,10 +237,10 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
                       e.stopPropagation();
                       imageCarousel.next();
                     }}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-all"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-xl transition-all hover:scale-110 z-20 backdrop-blur-sm"
                   >
                     <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
                 </>
@@ -239,15 +249,17 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
           )}
         </div>
 
-        {/* Outfit Info Card (Tinder-style info overlay) */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white">
-          <div className="mb-4">
-            <h3 className="text-2xl font-bold mb-2">Outfit #{outfits.length - (outfits.indexOf(currentOutfit) || 0)}</h3>
+        {/* Outfit Info Card (Enhanced Tinder-style info overlay) */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent p-6 text-white">
+          <div className="mb-2">
+            <h3 className="text-3xl font-bold mb-3 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+              Outfit #{outfits.length - (outfits.indexOf(currentOutfit) || 0)}
+            </h3>
             <div className="flex flex-wrap gap-2">
               {currentOutfit.items.map((item, idx) => (
                 <span 
                   key={idx}
-                  className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm capitalize"
+                  className="px-4 py-1.5 bg-white/25 backdrop-blur-md rounded-full text-sm font-medium capitalize border border-white/20 shadow-lg"
                 >
                   {item.type} • {item.color}
                 </span>
@@ -257,32 +269,32 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
         </div>
       </div>
 
-      {/* Action Buttons (Tinder-style) */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4 items-center z-10">
+      {/* Action Buttons (Enhanced Tinder-style) */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-5 items-center z-30">
         {/* Dislike Button */}
         <button
           onClick={() => handleSwipe('left')}
-          className="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform border-2 border-red-200"
+          className="w-16 h-16 rounded-full bg-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-200 border-2 border-red-300 hover:border-red-400 hover:shadow-red-200/50"
         >
           <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
         {/* Customize Button */}
         <button
           onClick={() => onCustomize?.(currentOutfit)}
-          className="w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform border-2 border-gray-200"
+          className="w-14 h-14 rounded-full bg-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-200 border-2 border-purple-300 hover:border-purple-400 hover:shadow-purple-200/50"
         >
-          <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+          <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
           </svg>
         </button>
 
         {/* Like Button */}
         <button
           onClick={() => handleSwipe('right')}
-          className="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform border-2 border-green-200"
+          className="w-16 h-16 rounded-full bg-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-200 border-2 border-green-300 hover:border-green-400 hover:shadow-green-200/50"
         >
           <svg className="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -291,9 +303,12 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
       </div>
 
       {/* Swipe Instructions */}
-      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-center text-white/80 text-sm z-10">
-        <p className="bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full">
-          Swipe left/right to like/dislike • Swipe up/down for more angles
+      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 text-center z-20">
+        <p className="bg-white/95 backdrop-blur-md text-gray-700 px-5 py-2.5 rounded-full text-sm font-medium shadow-xl border border-white/50">
+          <span className="inline-block mr-2">👆</span>
+          Swipe left/right to like/dislike
+          <span className="mx-2">•</span>
+          Swipe up/down for angles
         </p>
       </div>
     </div>

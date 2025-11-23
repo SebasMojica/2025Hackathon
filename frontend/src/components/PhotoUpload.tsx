@@ -44,15 +44,17 @@ export function PhotoUpload({ onUploadComplete, existingUser }: PhotoUploadProps
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Upload Your Photo</h2>
+    <div className="w-full max-w-md mx-auto p-8 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 card-hover">
+      <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+        Upload Your Photo
+      </h2>
       
       {preview && (
-        <div className="mb-4">
+        <div className="mb-6 overflow-hidden rounded-xl shadow-lg border-2 border-purple-200">
           <img
             src={preview.startsWith('data:') ? preview : (preview.startsWith('http') ? preview : `${import.meta.env.VITE_API_URL || 'http://localhost:3001'}${preview}`)}
             alt="Preview"
-            className="w-full h-64 object-cover rounded-lg"
+            className="w-full h-64 object-cover"
           />
         </div>
       )}
@@ -68,9 +70,14 @@ export function PhotoUpload({ onUploadComplete, existingUser }: PhotoUploadProps
       <button
         onClick={() => fileInputRef.current?.click()}
         disabled={uploading}
-        className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
       >
-        {uploading ? 'Uploading...' : preview ? 'Change Photo' : 'Select Photo'}
+        {uploading ? (
+          <span className="flex items-center justify-center gap-2">
+            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            Uploading...
+          </span>
+        ) : preview ? 'Change Photo' : 'Select Photo'}
       </button>
 
       {error && (
