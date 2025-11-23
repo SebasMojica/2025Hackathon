@@ -142,6 +142,43 @@ A web application that suggests clothing based on purchase history and wardrobe,
 - Backend uses `tsx watch` for hot-reload
 - TypeScript is used throughout for type safety
 
+## Deployment to Railway
+
+This app is configured for deployment to Railway. See [RAILWAY_DEPLOYMENT.md](./RAILWAY_DEPLOYMENT.md) for detailed instructions.
+
+### Quick Deploy
+
+1. **Connect to Railway:**
+   - Go to https://railway.app
+   - Create new project from GitHub repo
+   - Select this repository
+
+2. **Set Environment Variables:**
+   ```
+   FAL_API_KEY=your_fal_api_key_here
+   NODE_ENV=production
+   ```
+
+3. **Deploy:**
+   - Railway will auto-detect and build
+   - Backend will be available at Railway's public domain
+
+4. **Load Dataset:**
+   ```bash
+   # Via Railway CLI
+   railway run npm run download-dataset
+   railway run curl -X POST https://your-app.railway.app/api/dataset/load-into-wardrobe
+   ```
+
+### Features Enabled in Production
+
+- ✅ Automatic public URL detection (Railway provides `RAILWAY_PUBLIC_DOMAIN`)
+- ✅ fal.ai integration with public image URLs
+- ✅ CORS configured for production
+- ✅ Static file serving for uploads and dataset
+- ✅ Health check endpoint
+- ✅ Environment-based configuration
+
 ## License
 
 MIT

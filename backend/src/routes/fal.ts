@@ -40,5 +40,20 @@ router.post('/try-on/angles', async (req, res) => {
   }
 });
 
+// Test endpoint to verify fal.ai setup
+router.get('/test', async (req, res) => {
+  const hasApiKey = !!process.env.FAL_API_KEY;
+  const publicUrl = process.env.PUBLIC_URL || process.env.FRONTEND_URL?.replace(':5173', ':3001') || 'http://localhost:3001';
+  
+  res.json({
+    hasApiKey,
+    publicUrl,
+    message: hasApiKey 
+      ? 'fal.ai API key is configured. Make sure PUBLIC_URL is set for image generation to work.'
+      : 'FAL_API_KEY is not set in .env file',
+    note: 'Images must be publicly accessible for fal.ai to generate try-on images. Use ngrok or deploy to a public server.',
+  });
+});
+
 export default router;
 

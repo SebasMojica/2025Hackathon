@@ -99,7 +99,12 @@ export function OutfitSwipe({ outfits, onSwipeComplete, onCustomize }: OutfitSwi
 
   const getImageUrl = (url: string) => {
     if (url.startsWith('http')) return url;
-    if (url.startsWith('/')) return `http://localhost:3001${url}`;
+    if (url.startsWith('/')) {
+      // In production, use relative URLs (same domain)
+      // In development, use localhost
+      const apiUrl = import.meta.env.VITE_API_URL || '';
+      return apiUrl ? `${apiUrl}${url}` : `http://localhost:3001${url}`;
+    }
     return url;
   };
 
