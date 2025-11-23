@@ -12,7 +12,7 @@ import datasetRoutes from './routes/dataset';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = parseInt(process.env.PORT || '3001', 10);
 
 // Get Railway public URL or use environment variable
 // Railway provides RAILWAY_PUBLIC_DOMAIN automatically
