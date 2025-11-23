@@ -145,16 +145,18 @@ async function pollForResult(requestId: string, maxAttempts: number = 30): Promi
           headers: {
             'Authorization': `Key ${FAL_API_KEY}`,
           },
+          timeout: 10000, // 10 second timeout per request
         }
       );
 
-      console.log(`   Poll attempt ${i + 1}/${maxAttempts}: status = ${response.data.status}`);
+      console.log(`   Poll attempt ${i + 1}/${maxAttempts}: status = ${response.data.status || 'unknown'}`);
 
       if (response.data.status === 'COMPLETED') {
         const imageUrl = response.data.images?.[0]?.url || 
                          response.data.image?.url ||
                          response.data.result?.image_url || 
-                         response.data.image_url || 
+                         response.data.image_url ||
+                         response.data.output?.image_url ||
                          '';
         
         if (imageUrl) {
@@ -162,6 +164,7 @@ async function pollForResult(requestId: string, maxAttempts: number = 30): Promi
           return imageUrl;
         } else {
           console.warn(`   ⚠️  Status is COMPLETED but no image URL found in response`);
+          console.warn(`   Response data:`, JSON.stringify(response.data, null, 2));
         }
       }
 
@@ -171,8 +174,15 @@ async function pollForResult(requestId: string, maxAttempts: number = 30): Promi
         throw new Error(errorMsg);
       }
     } catch (error: any) {
+      if (error.code === 'ECONNABORTED') {
+        console.warn(`   ⚠️  Request timeout on attempt ${i + 1}, continuing...`);
+        continue;
+      }
       if (i === maxAttempts - 1) {
         console.error(`   ❌ Polling failed after ${maxAttempts} attempts:`, error.message);
+        if (error.response) {
+          console.error(`   Response:`, JSON.stringify(error.response.data, null, 2));
+        }
         throw error;
       }
       // Continue polling on error (might be temporary)

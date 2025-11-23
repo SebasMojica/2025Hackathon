@@ -84,6 +84,7 @@ export async function generateOutfitSuggestions(count: number = 5, userPhotoUrl?
       };
       
       // Generate try-on image if user photo is available
+      // Use Promise.race to timeout after 30 seconds to avoid blocking the response
       if (userPhoto && items.length > 0) {
         try {
           // Use the first item (main piece) for try-on
@@ -98,7 +99,15 @@ export async function generateOutfitSuggestions(count: number = 5, userPhotoUrl?
           console.log(`   Clothing item: ${clothingUrl}`);
           console.log(`   PUBLIC_URL: ${process.env.PUBLIC_URL || 'NOT SET (using localhost)'}`);
           
-          const tryOnImage = await generateVirtualTryOn(userPhoto, clothingUrl);
+          // Add timeout to prevent hanging
+          const timeoutPromise = new Promise<never>((_, reject) => {
+            setTimeout(() => reject(new Error('Image generation timeout after 30 seconds')), 30000);
+          });
+          
+          const tryOnImage = await Promise.race([
+            generateVirtualTryOn(userPhoto, clothingUrl),
+            timeoutPromise,
+          ]);
           
           if (tryOnImage) {
             outfit.tryOnImageUrl = tryOnImage;
@@ -108,8 +117,11 @@ export async function generateOutfitSuggestions(count: number = 5, userPhotoUrl?
           }
         } catch (error: any) {
           console.error(`❌ Failed to generate try-on for outfit ${outfitId}:`, error.message);
-          console.error(`   Error details:`, error.stack || error);
+          if (error.response) {
+            console.error(`   API Error:`, JSON.stringify(error.response.data, null, 2));
+          }
           // Continue without try-on image - outfit will still be returned
+          // Frontend will handle missing images gracefully
         }
       } else {
         if (!userPhoto) {
