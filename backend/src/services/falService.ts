@@ -133,6 +133,8 @@ export async function generateVirtualTryOn(
 
 // Poll for async result
 async function pollForResult(requestId: string, maxAttempts: number = 30): Promise<string> {
+  console.log(`   Polling for result: ${requestId} (max ${maxAttempts} attempts)`);
+  
   for (let i = 0; i < maxAttempts; i++) {
     try {
       await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2 seconds
@@ -146,21 +148,34 @@ async function pollForResult(requestId: string, maxAttempts: number = 30): Promi
         }
       );
 
+      console.log(`   Poll attempt ${i + 1}/${maxAttempts}: status = ${response.data.status}`);
+
       if (response.data.status === 'COMPLETED') {
-        return response.data.images?.[0]?.url || 
-               response.data.image?.url ||
-               response.data.result?.image_url || 
-               response.data.image_url || 
-               '';
+        const imageUrl = response.data.images?.[0]?.url || 
+                         response.data.image?.url ||
+                         response.data.result?.image_url || 
+                         response.data.image_url || 
+                         '';
+        
+        if (imageUrl) {
+          console.log(`   ✅ Got image URL: ${imageUrl}`);
+          return imageUrl;
+        } else {
+          console.warn(`   ⚠️  Status is COMPLETED but no image URL found in response`);
+        }
       }
 
       if (response.data.status === 'FAILED') {
-        throw new Error('Image generation failed');
+        const errorMsg = response.data.error || response.data.message || 'Image generation failed';
+        console.error(`   ❌ Generation failed: ${errorMsg}`);
+        throw new Error(errorMsg);
       }
     } catch (error: any) {
       if (i === maxAttempts - 1) {
+        console.error(`   ❌ Polling failed after ${maxAttempts} attempts:`, error.message);
         throw error;
       }
+      // Continue polling on error (might be temporary)
     }
   }
 

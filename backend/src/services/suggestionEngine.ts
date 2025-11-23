@@ -88,17 +88,32 @@ export async function generateOutfitSuggestions(count: number = 5, userPhotoUrl?
         try {
           // Use the first item (main piece) for try-on
           const mainItem = items[0];
+          const baseUrl = process.env.PUBLIC_URL || `http://localhost:${process.env.PORT || 3001}`;
           const clothingUrl = mainItem.imageUrl.startsWith('http') 
             ? mainItem.imageUrl 
-            : `${process.env.PUBLIC_URL || `http://localhost:${process.env.PORT || 3001}`}${mainItem.imageUrl}`;
+            : `${baseUrl}${mainItem.imageUrl}`;
           
-          console.log(`Generating try-on for outfit ${outfitId}...`);
+          console.log(`\n🎨 Generating try-on for outfit ${outfitId}...`);
+          console.log(`   User photo: ${userPhoto}`);
+          console.log(`   Clothing item: ${clothingUrl}`);
+          console.log(`   PUBLIC_URL: ${process.env.PUBLIC_URL || 'NOT SET (using localhost)'}`);
+          
           const tryOnImage = await generateVirtualTryOn(userPhoto, clothingUrl);
-          outfit.tryOnImageUrl = tryOnImage;
-          console.log(`✅ Generated try-on image for outfit ${outfitId}`);
+          
+          if (tryOnImage) {
+            outfit.tryOnImageUrl = tryOnImage;
+            console.log(`✅ Successfully generated try-on image: ${tryOnImage}`);
+          } else {
+            console.warn(`⚠️  Generated try-on but got empty URL for outfit ${outfitId}`);
+          }
         } catch (error: any) {
-          console.error(`Failed to generate try-on for outfit ${outfitId}:`, error.message);
+          console.error(`❌ Failed to generate try-on for outfit ${outfitId}:`, error.message);
+          console.error(`   Error details:`, error.stack || error);
           // Continue without try-on image - outfit will still be returned
+        }
+      } else {
+        if (!userPhoto) {
+          console.warn(`⚠️  Skipping try-on generation for outfit ${outfitId}: No user photo available`);
         }
       }
       

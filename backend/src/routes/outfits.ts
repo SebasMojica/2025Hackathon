@@ -10,11 +10,23 @@ router.get('/suggestions', async (req, res) => {
     const count = parseInt(req.query.count as string) || 5;
     const userPhotoUrl = req.query.userPhotoUrl as string | undefined;
     
+    console.log(`\n📋 Generating ${count} outfit suggestions...`);
+    if (userPhotoUrl) {
+      console.log(`   User photo URL provided: ${userPhotoUrl}`);
+    } else {
+      console.log(`   No user photo URL provided, will try to get from user data`);
+    }
+    
     // Generate outfits with try-on images
     const outfits = await generateOutfitSuggestions(count, userPhotoUrl);
+    
+    // Log results
+    const withImages = outfits.filter(o => o.tryOnImageUrl).length;
+    console.log(`✅ Generated ${outfits.length} outfits, ${withImages} with try-on images`);
+    
     res.json(outfits);
   } catch (error: any) {
-    console.error('Error generating outfit suggestions:', error);
+    console.error('❌ Error generating outfit suggestions:', error);
     res.status(500).json({ error: error.message });
   }
 });
