@@ -213,7 +213,6 @@ function WardrobePage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const { datasetApi } = require('./services/api');
 
   const handleLoadDataset = async () => {
     setLoading(true);
