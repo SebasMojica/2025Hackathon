@@ -6,7 +6,7 @@ import { OutfitSwipe } from './components/OutfitSwipe';
 import { OutfitCustomizer } from './components/OutfitCustomizer';
 import { TryOnPreview } from './components/TryOnPreview';
 import { useOutfitSuggestions } from './hooks/useOutfitSuggestions';
-import { userApi } from './services/api';
+import { userApi, datasetApi } from './services/api';
 import { User, Outfit } from './types';
 import './App.css';
 
@@ -119,10 +119,15 @@ function OutfitsPage() {
 
   if (loading || userLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
-          <p className="text-gray-600">Loading outfit suggestions...</p>
+          <div className="relative">
+            <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-purple-200 border-t-purple-600 mb-4"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="h-8 w-8 bg-purple-600 rounded-full animate-pulse"></div>
+            </div>
+          </div>
+          <p className="text-gray-700 font-medium text-lg">Loading outfit suggestions...</p>
         </div>
       </div>
     );
@@ -130,14 +135,15 @@ function OutfitsPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="text-center">
-          <p className="text-red-600 mb-4">{error}</p>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
+        <div className="text-center max-w-md mx-auto px-4">
+          <div className="text-6xl mb-4">😕</div>
+          <p className="text-red-600 mb-6 font-medium text-lg">{error}</p>
           <button
             onClick={() => refetch()}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
           >
-            Retry
+            Try Again
           </button>
         </div>
       </div>
@@ -146,7 +152,7 @@ function OutfitsPage() {
 
   if (customizingOutfit) {
     return (
-      <div className="min-h-screen bg-gray-100 py-8">
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 py-8">
         <OutfitCustomizer
           outfit={customizingOutfit}
           onSave={(_outfit) => {
@@ -187,11 +193,12 @@ function OutfitsPage() {
 
       {!user && (
         <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-30 max-w-md mx-auto px-4">
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
-            <p className="text-yellow-800 mb-2 text-sm">Upload your photo first to see virtual try-on!</p>
+          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-200 rounded-2xl p-6 text-center shadow-xl">
+            <div className="text-4xl mb-3">📸</div>
+            <p className="text-yellow-800 mb-4 font-medium">Upload your photo first to see virtual try-on!</p>
             <Link
               to="/"
-              className="inline-block px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 font-medium text-sm"
+              className="inline-block px-6 py-2.5 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-xl hover:from-yellow-600 hover:to-orange-600 font-semibold text-sm transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
             >
               Go to Home
             </Link>
@@ -203,22 +210,103 @@ function OutfitsPage() {
 }
 
 function WardrobePage() {
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const { datasetApi } = require('./services/api');
+
+  const handleLoadDataset = async () => {
+    setLoading(true);
+    setMessage(null);
+    setError(null);
+    try {
+      const result = await datasetApi.loadIntoWardrobe();
+      setMessage(result.message);
+    } catch (err: any) {
+      setError(err.message || 'Failed to load dataset into wardrobe.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleReplaceWardrobe = async () => {
+    setLoading(true);
+    setMessage(null);
+    setError(null);
+    try {
+      const result = await datasetApi.replaceWardrobe();
+      setMessage(result.message);
+    } catch (err: any) {
+      setError(err.message || 'Failed to replace wardrobe with dataset.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 py-12">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">My Wardrobe</h1>
-          <Link
-            to="/"
-            className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
-          >
-            Home
-          </Link>
+        <div className="text-center mb-10">
+          <h1 className="text-5xl font-bold mb-3 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
+            My Wardrobe
+          </h1>
+          <p className="text-gray-600 text-lg">Manage your clothing collection</p>
         </div>
 
-        <WardrobeUpload onUploadComplete={() => {
-          // Optionally refresh wardrobe list
-        }} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <WardrobeUpload onUploadComplete={() => {
+            // Optionally refresh wardrobe list
+          }} />
+          
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/50 card-hover">
+            <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              Dataset Management
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Load the pre-processed Kaggle clothing dataset into your wardrobe for outfit suggestions.
+            </p>
+            {message && (
+              <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-green-700 text-sm font-medium">{message}</p>
+              </div>
+            )}
+            {error && (
+              <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-700 text-sm font-medium">{error}</p>
+              </div>
+            )}
+            <div className="flex flex-col gap-3">
+              <button
+                onClick={handleLoadDataset}
+                disabled={loading}
+                className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              >
+                {loading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Loading...
+                  </span>
+                ) : (
+                  'Load Dataset (Add New)'
+                )}
+              </button>
+              <button
+                onClick={handleReplaceWardrobe}
+                disabled={loading}
+                className="w-full px-6 py-3 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl font-semibold hover:from-orange-700 hover:to-red-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              >
+                {loading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Replacing...
+                  </span>
+                ) : (
+                  'Replace Wardrobe (Clear & Load)'
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

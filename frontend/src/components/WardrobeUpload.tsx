@@ -65,8 +65,10 @@ export function WardrobeUpload({ onUploadComplete }: WardrobeUploadProps) {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Add to Wardrobe</h2>
+    <div className="w-full max-w-md mx-auto p-8 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 card-hover">
+      <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+        Add to Wardrobe
+      </h2>
       
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -78,7 +80,7 @@ export function WardrobeUpload({ onUploadComplete }: WardrobeUploadProps) {
             type="file"
             accept="image/*"
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all"
           />
         </div>
 
@@ -89,7 +91,7 @@ export function WardrobeUpload({ onUploadComplete }: WardrobeUploadProps) {
           <select
             value={formData.type}
             onChange={(e) => setFormData({ ...formData, type: e.target.value as ClothingItem['type'] })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all bg-white"
           >
             <option value="top">Top</option>
             <option value="bottom">Bottom</option>
@@ -109,7 +111,7 @@ export function WardrobeUpload({ onUploadComplete }: WardrobeUploadProps) {
             value={formData.color}
             onChange={(e) => setFormData({ ...formData, color: e.target.value })}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all"
             placeholder="e.g., blue, red, black"
           />
         </div>
@@ -122,7 +124,7 @@ export function WardrobeUpload({ onUploadComplete }: WardrobeUploadProps) {
             type="text"
             value={formData.brand}
             onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all"
           />
         </div>
 
@@ -134,16 +136,23 @@ export function WardrobeUpload({ onUploadComplete }: WardrobeUploadProps) {
             type="date"
             value={formData.purchaseDate}
             onChange={(e) => setFormData({ ...formData, purchaseDate: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all"
           />
         </div>
 
         <button
           type="submit"
           disabled={uploading}
-          className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-semibold hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
         >
-          {uploading ? 'Uploading...' : 'Add to Wardrobe'}
+          {uploading ? (
+            <span className="flex items-center justify-center gap-2">
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              Uploading...
+            </span>
+          ) : (
+            'Add to Wardrobe'
+          )}
         </button>
 
         {error && (
