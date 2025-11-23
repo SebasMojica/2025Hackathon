@@ -75,6 +75,31 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Auto-load dataset on server start (if wardrobe is empty)
+async function autoLoadDataset() {
+  try {
+    const { getWardrobe } = await import('./services/storage');
+    const { getDataset, loadDatasetIntoWardrobe } = await import('./services/datasetService');
+    
+    const wardrobe = await getWardrobe();
+    const dataset = await getDataset();
+    
+    // Only auto-load if wardrobe is empty and dataset exists
+    if (wardrobe.length === 0 && dataset.length > 0) {
+      console.log(`📦 Auto-loading ${dataset.length} items from dataset into wardrobe...`);
+      const count = await loadDatasetIntoWardrobe();
+      console.log(`✅ Auto-loaded ${count} items into wardrobe`);
+    } else if (wardrobe.length > 0) {
+      console.log(`ℹ️  Wardrobe already has ${wardrobe.length} items, skipping auto-load`);
+    } else if (dataset.length === 0) {
+      console.log(`ℹ️  Dataset is empty, skipping auto-load. Run 'npm run download-dataset' to populate.`);
+    }
+  } catch (error: any) {
+    console.error('⚠️  Failed to auto-load dataset:', error.message);
+    // Don't throw - allow server to start even if auto-load fails
+  }
+}
+
 // Serve frontend in production (if built and exists)
 // This allows single-service deployment on Railway
 if (process.env.NODE_ENV === 'production') {
@@ -105,5 +130,10 @@ app.listen(PORT, '0.0.0.0', () => {
   if (RAILWAY_PUBLIC_DOMAIN) {
     console.log(`Railway deployment detected: https://${RAILWAY_PUBLIC_DOMAIN}`);
   }
+  
+  // Auto-load dataset if wardrobe is empty (non-blocking)
+  autoLoadDataset().catch(err => {
+    console.error('Auto-load dataset error:', err);
+  });
 });
 
