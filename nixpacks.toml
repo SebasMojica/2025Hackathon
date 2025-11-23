@@ -13,7 +13,9 @@ cmds = [
 [phases.build]
 cmds = [
   "cd frontend && npm run build",
-  "cd backend && npm run build"
+  "cd backend && npm run build",
+  "# Ensure dataset images directory exists and is accessible",
+  "mkdir -p backend/dataset/images || true"
 ]
 
 [start]

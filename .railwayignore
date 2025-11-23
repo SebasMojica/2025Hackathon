@@ -6,8 +6,8 @@ node_modules/
 *.log
 .DS_Store
 
-# Dataset files (will be loaded after deployment)
-backend/dataset/images/
+# Dataset files - keep images for fal.ai access, ignore raw kaggle data
+# backend/dataset/images/ - INCLUDED (needed for fal.ai to access images)
 backend/kaggle-dataset/
 backend/kaggle-dataset.zip
 

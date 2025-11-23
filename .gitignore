@@ -18,10 +18,11 @@ backend/dist/
 backend/src/data/*.json
 backend/uploads/
 
-# Dataset images (large files - download with npm run download-dataset)
-backend/dataset/images/
+# Dataset images - include in git for Railway deployment (needed for fal.ai)
+# backend/dataset/images/ - INCLUDED in git for Railway
 # Keep dataset.json for reference
 !backend/dataset/dataset.json
+!backend/dataset/images/
 
 # Kaggle dataset (very large - downloaded separately)
 backend/kaggle-dataset/
